@@ -44,7 +44,7 @@ body {
 h1 {
     color: #ff4d6d;
     margin-bottom: 20px;
-    font-size: clamp(60px, 10vw, 40px);
+    font-size: clamp(28px, 6vw, 48px);
 }
 
 .happy-text {
@@ -71,13 +71,17 @@ p {
 }
 
 button {
-    width: 160px;        
+    width: 160px;
     padding: 10px 0;
     font-size: 16px;
     border: none;
     border-radius: 15px;
     cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
 }
+
 
 #yesBtn {
     background-color: #ff4d6d;
@@ -143,12 +147,51 @@ button {
 
 .star {
     position: absolute;
-    background: white;
-    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    background: violet;
+    transform: rotate(45deg);
     animation: twinkle 2s infinite ease-in-out;
 }
 
+.star::before,
+.star::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: violet;
+    border-radius: 50%;
+}
+
+.star::before {
+    top: -4px;
+    left: 0;
+}
+
+.star::after {
+    left: -4px;
+    top: 0;
+}
+
 @keyframes twinkle {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 1; }
+    0%, 100% { opacity: 0.3; transform: scale(0.8) rotate(45deg); }
+    50% { opacity: 1; transform: scale(1.1) rotate(45deg); }
+}
+
+.confetti {
+    position: fixed;
+    width: 8px;
+    height: 14px;
+    background: red;
+    top: -20px;
+    animation: fall 3s linear forwards;
+    z-index: 999;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
 }
